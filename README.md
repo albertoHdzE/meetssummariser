@@ -1,6 +1,6 @@
-# AI-Powered Meeting Summarizer
+# Meeting Summarizer
 
-## Overview
+<!-- ## Overview
 
 The **AI-Powered Meeting Summarizer** is a Gradio-powered application that converts audio recordings of meetings into transcripts and provides concise summaries using `whisper.cpp` for audio-to-text conversion and `Ollama` for text summarization. This tool is ideal for quickly extracting key points, decisions, and action items from meetings.
 
@@ -151,4 +151,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 - **whisper.cpp** by Georgi Gerganov for the audio-to-text conversion.
 - **Gradio** for the interactive web interface framework.
-- **Ollama** for providing large language models for summarization.
+- **Ollama** for providing large language models for summarization. -->
