@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{amsmath} % For mathematical symbols if needed
+\usepackage{graphicx} % For including images if needed
+
+% Remove page numbers for a very flat style, if desired
+% \pagestyle{empty}
+
+\title{An Open-Source Approach to Automated Meeting Summarisation}
+\author{Alberto Espinosa \\ KSquare Group}
+\date{July 23, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper presents a proof-of-concept system designed for the automated transcription and summarisation of meeting audio. Leveraging open-source large language models (LLMs) and speech-to-text technologies, the system processes audio input, generates a comprehensive transcript, and subsequently produces a concise summary of the discussion. This initiative aligns with KSquare Group's commitment to fostering an AI-driven culture and explores the potential for enhancing process efficiency through intelligent automation. The document outlines the system's architecture, the technologies employed, its anticipated impact, and avenues for future development.
+\end{abstract}
+
+\section{Introduction}
+In contemporary professional environments, meetings serve as critical platforms for collaboration, decision-making, and information exchange. However, the volume of information generated during these sessions often presents challenges in terms of retention, dissemination, and actionable follow-up. Manual summarisation is a time-consuming process prone to subjectivity and oversight. This project addresses these challenges by proposing an automated solution for meeting summarisation, aiming to streamline information management and improve operational efficiency.
+
+This endeavour is a direct component of KSquare Group's broader initiative to integrate artificial intelligence into its organisational culture. By demonstrating practical applications of AI, the project seeks to cultivate an understanding and adoption of AI technologies across various business functions.
+
+\section{Status}
+Proof of concept \textbf{completed}, awaiting for review from KSquare Group.
+
+\section{System Architecture}
+The automated meeting summarisation system operates as a sequential pipeline, processing audio input through distinct stages to yield a summarised output (see Figure~\ref{fig:info_flow}). The primary components include an audio preprocessing module, a speech-to-text transcription engine, a large language model for summarisation, and a user interface for interaction (see Figure~\ref{fig:architecture}).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{/Users/albertohernandez/Documents/projects/AI-Powered-Meeting-Summarizer/docs/architecture.png}
+    \caption{High-level system architecture showing the main components and their interactions}
+    \label{fig:architecture}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{/Users/albertohernandez/Documents/projects/AI-Powered-Meeting-Summarizer/docs/Info_flow.png}
+    \caption{Information flow diagram depicting the processing pipeline from audio input to final summary}
+    \label{fig:info_flow}
+\end{figure}
+
+
+
+Upon receiving an audio file, the system first converts it into a standardised format suitable for transcription. The processed audio is then fed into the transcription engine, which generates a textual transcript of the meeting dialogue. This transcript, potentially augmented by user-provided context, is subsequently submitted to a large language model. The LLM processes the transcript to extract key information and synthesise a concise summary. Both the generated summary and the complete transcript are then made available to the user.
+
+\section{Technology Utilised}
+The system is constructed using a combination of robust, open-source technologies, prioritising local deployment capabilities for data privacy and operational control.
+
+\begin{itemize}
+    \item \textbf{Ollama}: This platform facilitates the local deployment and execution of various open-source large language models. For this project, Ollama serves as the inference engine for the summarisation task, allowing the system to leverage powerful LLMs without reliance on external cloud services.
+    \item \textbf{Whisper.cpp}: An efficient C++ port of OpenAI's Whisper model, Whisper.cpp is employed for the speech-to-text transcription. Its optimised performance enables rapid and accurate conversion of spoken language into text, a fundamental step in the summarisation pipeline.
+    \item \textbf{FFmpeg}: This versatile multimedia framework is utilised for the preprocessing of audio files. It ensures that incoming audio is converted into the specific format (e.g., sample rate, channel count) required by the Whisper transcription engine, ensuring compatibility and optimal performance.
+    \item \textbf{Gradio}: For the user-facing component, Gradio provides a straightforward framework for building and deploying interactive web interfaces. It enables users to upload audio files, provide additional context, select models, and view the generated summary and transcript with ease.
+\end{itemize}
+
+It is important to note that this system is based on open large language models, providing flexibility and transparency. The architecture can be described as \textit{semi-agentic}. This term is used because the system executes a predefined sequence of tasks (audio preprocessing, transcription, and summarisation) in a pipeline fashion. It does not, however, incorporate advanced agentic frameworks such as LangChain or LangGraph, which typically involve dynamic planning, tool orchestration, or complex reasoning loops based on environmental feedback. The system's operation is deterministic based on its input and configured steps.
+
+\section{Impact and Potential Applications}
+The implementation of automated meeting summarisation holds significant promise for enhancing organisational efficiency and knowledge management within KSquare Group and beyond.
+
+\begin{itemize}
+    \item \textbf{Enhanced Efficiency}: By automating the summarisation process, considerable time savings can be realised, freeing up personnel from tedious manual tasks. This accelerates the dissemination of key information and decisions.
+    \item \textbf{Improved Information Accessibility}: Concise summaries make it easier for stakeholders to quickly grasp the essence of a meeting, even if they were unable to attend. Transcripts also provide a searchable record, improving knowledge retrieval.
+    \item \textbf{Better Decision Tracking}: Automated summaries can highlight action items, responsible parties, and deadlines, leading to improved accountability and project progression.
+    \item \textbf{Accessibility Support}: Comprehensive transcripts provide a valuable resource for individuals with hearing impairments, ensuring inclusivity in communication.
+\item \textbf{Potential Extensions}: The core technology can be extended to various applications, including:
+    \begin{itemize}
+        \item Integration with calendar systems for automatic meeting recording and summarisation.
+        \item Extraction of specific entities (e.g., names, dates, locations) or action items.
+        \item Sentiment analysis of meeting discussions to gauge overall mood or identify areas of contention.
+        \item Multi-speaker diarisation to attribute specific sections of the transcript to individual speakers.
+    \end{itemize}
+\end{itemize}
+
+\section{Future Work and Enhancements}
+As a proof-of-concept (PoC), the current system demonstrates the fundamental feasibility and value of automated meeting summarisation. Several avenues for future development and enhancement have been identified:
+
+\begin{itemize}
+    \item \textbf{Robustness and Error Handling}: Implementing more sophisticated error detection and recovery mechanisms to handle unexpected inputs or external service failures.
+    \item \textbf{Advanced Summarisation Techniques}: Exploring more nuanced summarisation approaches, such as extractive summarisation (identifying key sentences from the transcript) or abstractive summarisation with greater control over length and style.
+    \item \textbf{User Feedback Mechanisms}: Incorporating methods for users to provide feedback on summary quality, which could potentially be used to fine-tune LLMs or improve prompt engineering.
+    \item \textbf{Scalability Considerations}: For enterprise-wide deployment, assessing and optimising the system's ability to handle a high volume of concurrent summarisation requests.
+    \item \textbf{Enterprise System Integration}: Developing connectors for seamless integration with existing enterprise communication platforms (e.g., Microsoft Teams, Zoom) and knowledge management systems.
+    \item \textbf{Security and Compliance}: Implementing robust security measures and ensuring compliance with data privacy regulations for sensitive meeting content.
+\end{itemize}
+
+\section{Conclusion}
+This project successfully demonstrates a viable approach to automated meeting summarisation utilising open-source technologies. By providing a clear, concise summary and a full transcript of meeting discussions, the system offers a tangible benefit in terms of efficiency and information management. As part of KSquare Group's AI culture initiative, it serves as a practical example of AI's transformative potential. The identified future enhancements underscore the system's promising trajectory from a proof-of-concept to a more comprehensive and integrated solution for modern workplaces.
+
+\end{document}
